@@ -2,7 +2,7 @@ name: Upload Website
 
 on:
   push:
-    paths:
+    branch:
     - main
 
 jobs:
