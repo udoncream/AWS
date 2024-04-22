@@ -1,4 +1,5 @@
-fetch ('https://sbf6r47lld.execute-api.us-west-1.amazonaws.com/Test/')  
+onload = (event) => {
+    fetch ('https://sbf6r47lld.execute-api.us-west-1.amazonaws.com/Test/')  
     .then(res => {
         return res.json();
     })
@@ -6,4 +7,5 @@ fetch ('https://sbf6r47lld.execute-api.us-west-1.amazonaws.com/Test/')
         const guestCount= document.getElementById('visitorCount');
         guestCount.innerHTML = data
     });
-//test
+
+};
