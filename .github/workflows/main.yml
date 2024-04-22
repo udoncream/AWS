@@ -3,8 +3,7 @@ name: Upload Website
 on:
   push:
     paths:
-    - AWS/Resume_Website_Code/*
-    - AWS/Back_End_Code/*
+    - main
 
 jobs:
   deploy:
