@@ -18,7 +18,7 @@ jobs:
       - name: AWS CLI v2
         uses: imehedi/actions-awscli-v2@latest
         with:
-          args: "lambda update-function-code \ --function-name arn:aws:lambda:us-west-1:058264275313:function:visitor-count-boto3-python \--zip-file fileb://AWS/Back_End_Code/code.zip"
+          args: "lambda update-function-code \ --function-name arn:aws:lambda:us-west-1:058264275313:function:visitor-count-boto3-python \ --zip-file fileb://Back_End_Code/code.zip"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
