@@ -2,8 +2,9 @@ name: Upload Website
 
 on:
   push:
-    branches:
-    - main
+    paths:
+    - AWS/Resume Website Code/*
+    - AWS/Back End Code/*
 
 jobs:
   deploy:
