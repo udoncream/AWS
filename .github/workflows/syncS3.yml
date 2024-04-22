@@ -2,8 +2,8 @@ name: Upload Website
 
 on:
   push:
-    paths:
-      - "AWS/Front_End_Website/*"
+    # paths:
+    #   - "AWS/Front_End_Website/*"
     branches: [main]
 
 jobs:
