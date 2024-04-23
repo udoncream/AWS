@@ -17,8 +17,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: aws-actions/configure-aws-credentials@v1.7.0
+    - name: Git clone the repository
+      uses: actions/checkout@v3
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1.7.0
       with:
           role-to-assume: arn:aws:iam::058264275313:oidc-provider/token.actions.githubusercontent.com #change to reflect your IAM role’s ARN
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
