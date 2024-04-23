@@ -5,28 +5,40 @@ on:
     # paths:
     #   - "AWS/Front_End_Website/*"
     branches: [main]
-
+env:
+  AWS_REGION: "us-west-1"
+  id-token: write
+  contents: read
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v3
     - uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-west-1'   # optional: defaults to us-east-1
-        # SOURCE_DIR: 'public'      # optional: defaults to entire repository
+    - uses: aws-actions/configure-aws-credentials@v1.7.0
+      with:
+          role-to-assume: arn:aws:iam::058264275313:oidc-provider/token.actions.githubusercontent.com #change to reflect your IAM role’s ARN
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: ${{ env.AWS_REGION }}
+    - name: Sts GetCallerIdentity
+      run: |
+        aws sts get-caller-identity
+      # env:
+      #   AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+      #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #   AWS_REGION: 'us-west-1'   # optional: defaults to us-east-1
+      #   # SOURCE_DIR: 'public'      # optional: defaults to entire repository
         
 
     - name: Invalidate CloudFront
       uses: chetan/invalidate-cloudfront-action@v2
       env:
         DISTRIBUTION: ${{ secrets.DISTRIBUTION }}
-        PATHS: "/Resume_Website_Code/Resume.html"
+        PATHS: "/Resume_Website_Code/*"
         AWS_REGION: "us-west-1"
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
