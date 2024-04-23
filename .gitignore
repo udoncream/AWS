@@ -1,4 +1,3 @@
-README.md
-AWS/.gitignore
-AWS/.github/Workflows
-
+*.log
+.github/*
+.git/*
