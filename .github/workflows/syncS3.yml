@@ -6,7 +6,7 @@ on:
     #   - "AWS/Front_End_Website/*"
     branches: [main]
 env:
-  AWS_REGION: "us-west-w"
+  AWS_REGION: "us-west-1"
 permissions:
   id-token: write
   contents: read
