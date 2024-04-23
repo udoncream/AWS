@@ -1,9 +1,9 @@
 name: Deploy Lambda function
 on:
   push:
-    paths:
-    - 'AWS/Back_End_Code/**'
-    branches: [main]
+    branches: 
+      - main
+      - 'Back_End_Code/**'
     
 jobs:
   deploy:
