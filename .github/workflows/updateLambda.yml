@@ -1,4 +1,4 @@
-name: Deploy Lambda function
+name: Deploy Lambda function!
 on:
   push:
     branches: 
